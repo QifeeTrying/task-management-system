@@ -122,4 +122,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-from .dev import * # Для розробки
+from .settings.dev import * # Для розробки
+from decouple import config
+

@@ -45,11 +45,12 @@ class Task(models.Model):
  updated_at = models.DateTimeField(auto_now=True)
 
  def __str__(self):
- return self.title
+     return self.title
 
  class Meta:
- db_table = 'tasks'
- ordering = ['-created_at']
+     db_table = 'tasks'
+     ordering = ['-created_at']
+
  indexes = [
  models.Index(fields=['status', 'priority']),
  models.Index(fields=['project', 'status']),
@@ -64,5 +65,5 @@ class TaskHistory(models.Model):
  changed_at = models.DateTimeField(auto_now_add=True)
 
  class Meta:
- db_table = 'task_history'
- ordering = ['-changed
+     db_table = 'task_history'
+     ordering = ['-changed_at']
