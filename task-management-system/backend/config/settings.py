@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,5 +124,21 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 from .settings.dev import * # Для розробки
-from decouple import config
 
+OGGING = {
+ 'version': 1,
+ 'formatters': {
+ 'json': {
+ '()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+ 'format': '%(asctime)s %(name)s %(levelname)s %(message)s'
+ }
+ },
+ 'handlers': {
+ 'logstash': {
+ 'level': 'INFO',
+ 'class': 'logstash.TCPLogstashHandler',
+ 'host': 'logstash',
+ 'port': 5000,
+ }
+ }
+}
